@@ -2,10 +2,13 @@
   "name": "swampnutz",
   "version": "0.1.0",
   "description": "Create a static site with markdown super fast",
-  "main": "index.js",
+  "main": "cli.js",
   "repository": "git@github.com:MrBenJ/swampnutz.git",
   "author": "Ben Junya <bjunya@gmail.com>",
   "license": "MIT",
+  "bin": {
+    "swampnutz": "./cli.js"
+  },
   "private": false,
   "dependencies": {
     "minimist": "^1.2.0",

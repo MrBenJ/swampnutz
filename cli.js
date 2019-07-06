@@ -6,7 +6,6 @@ const nunjucks = require('nunjucks');
 
 const { path: filePath } = Minimist(process.argv.slice(2));
 
-
 const render = promisify(nunjucks.render);
 function getFilename(filepath) {
   const [ ext, file ] = filepath.split('.').reverse();
