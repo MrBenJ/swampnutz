@@ -14,6 +14,15 @@ function init() {
   const md = process.argv[2];
   const { title } = Minimist(process.argv.slice(2));
 
+  if (!md) {
+    // Show help
+    console.log('swampnutz usage: \n');
+    console.log('  swampnutz your_markdown_file --title "Your page title"\n ');
+    console.log('    --title is optional\n\n');
+    console.log('Made with <3 by @MrBenJ (https://www.github.com/MrBenJ');
+    return;
+  }
+
   const BUILD_PATH = path.resolve(process.cwd(), '.swampnutz');
   const rawMarkdown = fs.readFileSync(
     path.resolve(process.cwd(), md)
