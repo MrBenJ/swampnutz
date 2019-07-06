@@ -1,9 +1,9 @@
 {
-  "name": "quicky-md-site",
+  "name": "swampnutz",
   "version": "0.1.0",
   "description": "Create a static site with markdown super fast",
   "main": "index.js",
-  "repository": "git@github.com:MrBenJ/quicky-md-site.git",
+  "repository": "git@github.com:MrBenJ/swampnutz.git",
   "author": "Ben Junya <bjunya@gmail.com>",
   "license": "MIT",
   "private": false,
