@@ -49,7 +49,7 @@ function init() {
 
       fs.writeFileSync(path.resolve(BUILD_PATH, './index.html'), file);
 
-      const child = spawn('surge',
+      const child = spawn('npx', ['surge'],
         {
           cwd: path.resolve(process.cwd(), '.swampnutz'),
           stdio: 'inherit'
