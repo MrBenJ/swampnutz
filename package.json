@@ -1,6 +1,6 @@
 {
   "name": "swampnutz",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Create a static site with markdown super fast",
   "main": "cli.js",
   "repository": "git@github.com:MrBenJ/swampnutz.git",
