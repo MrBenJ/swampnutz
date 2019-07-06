@@ -11,6 +11,7 @@
   },
   "private": false,
   "dependencies": {
+    "marked": "^0.7.0",
     "minimist": "^1.2.0",
     "nunjucks": "^3.2.0"
   }

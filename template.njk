@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="https://unpkg.com/inline-md@latest/dist/index.js"></script>
-</head>
-<body>
-  <div data-markdown>
-    {{md}}
-  </div>
-</body>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+    <title>{{ title }}</title>
+    <style>
+      .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+      }
 
+      @media (max-width: 767px) {
+        .markdown-body {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body class="markdown-body">{{ content | safe }}</body>
 <html>

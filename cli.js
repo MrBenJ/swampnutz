@@ -1,35 +1,43 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
+const { spawn } = require('child_process');
 const { promisify } = require('util');
 const Minimist = require('minimist');
 const nunjucks = require('nunjucks');
-
-const { path: filePath } = Minimist(process.argv.slice(2));
+const marked = require('marked');
 
 const render = promisify(nunjucks.render);
-function getFilename(filepath) {
-  const [ ext, file ] = filepath.split('.').reverse();
-
-  const [ name ] = file.split('/').reverse();
-
-  return name;
-}
+const toMarkdown = promisify(marked);
 
 function init() {
-  // TODO: Change this to the name of the file
-  const BUILD_PATH = path.resolve(process.cwd(), 'dist');
-  const content = fs.readFileSync(
-    path.resolve(process.cwd(), filePath)
+  const md = process.argv[2];
+  const { title } = Minimist(process.argv.slice(2));
+
+  const BUILD_PATH = path.resolve(process.cwd(), '.swampnutz');
+  const rawMarkdown = fs.readFileSync(
+    path.resolve(process.cwd(), md)
   ).toString();
 
-  render(path.resolve(__dirname, './template.njk'), { md: content }).then( file => {
+  toMarkdown(rawMarkdown)
+    .then( content => {
+      return Promise.resolve(
+        render( path.resolve(__dirname, './template.njk'), { content, title })
+      );
+    })
+    .then(file => {
+      if (!fs.existsSync()) {
+        fs.mkdirSync(BUILD_PATH);
+      }
 
-    if (!fs.existsSync()) {
-      fs.mkdirSync(BUILD_PATH);
-    }
+      fs.writeFileSync(path.resolve(BUILD_PATH, './index.html'), file);
 
-    fs.writeFileSync(path.resolve(BUILD_PATH, './index.html'), file);
-  });
+      const child = spawn(`cd ${process.cwd()}/.swampnutz && surge`);
+
+      // child.on('exit', code => {
+      //   return code;
+      // });
+    });
 }
 
 init();
