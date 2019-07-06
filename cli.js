@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 const { promisify } = require('util');
+const chalk = require('chalk');
 const Minimist = require('minimist');
 const nunjucks = require('nunjucks');
 const marked = require('marked');
@@ -10,16 +11,20 @@ const marked = require('marked');
 const render = promisify(nunjucks.renderString);
 const toMarkdown = promisify(marked);
 
+function showHelp() {
+  console.log(chalk.bold.white('swampnutz usage: \n'));
+  console.log(chalk.green('  swampnutz your_markdown_file --title "Your page title"\n '));
+  console.log(chalk.green('    --title is optional\n\n'));
+  console.log(chalk.bold.white('Made with <3 by @MrBenJ (https://www.github.com/MrBenJ\n'));
+}
+
 function init() {
   const md = process.argv[2];
   const { title } = Minimist(process.argv.slice(2));
 
   if (!md) {
     // Show help
-    console.log('swampnutz usage: \n');
-    console.log('  swampnutz your_markdown_file --title "Your page title"\n ');
-    console.log('    --title is optional\n\n');
-    console.log('Made with <3 by @MrBenJ (https://www.github.com/MrBenJ');
+    showHelp();
     return;
   }
 
