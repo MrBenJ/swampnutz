@@ -36,14 +36,16 @@ function init() {
         {
           cwd: path.resolve(process.cwd(), '.swampnutz'),
           stdio: 'inherit'
+        }
+      );
+
+      child.on('exit', () => {
+        fs.unlinkSync(path.resolve(process.cwd(), '.swampnutz/index.html'));
+        fs.rmdir(path.resolve(process.cwd(), '.swampnutz'), error => {
+          if (error) { throw error; }
+          process.exit(0);
         });
-
-
-
-
-      // child.on('exit', code => {
-      //   return code;
-      // });
+      });
     });
 }
 
