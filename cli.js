@@ -32,7 +32,14 @@ function init() {
 
       fs.writeFileSync(path.resolve(BUILD_PATH, './index.html'), file);
 
-      const child = spawn(`cd ${process.cwd()}/.swampnutz && surge`);
+      const child = spawn('surge',
+        {
+          cwd: path.resolve(process.cwd(), '.swampnutz'),
+          stdio: 'inherit'
+        });
+
+
+
 
       // child.on('exit', code => {
       //   return code;
