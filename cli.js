@@ -7,7 +7,7 @@ const Minimist = require('minimist');
 const nunjucks = require('nunjucks');
 const marked = require('marked');
 
-const render = promisify(nunjucks.render);
+const render = promisify(nunjucks.renderString);
 const toMarkdown = promisify(marked);
 
 function init() {
@@ -21,8 +21,11 @@ function init() {
 
   toMarkdown(rawMarkdown)
     .then( content => {
+      const template =
+        fs.readFileSync(path.resolve(__dirname, 'template.njk')).toString();
+
       return Promise.resolve(
-        render( path.resolve(__dirname, './template.njk'), { content, title })
+        render(template, { content, title })
       );
     })
     .then(file => {
