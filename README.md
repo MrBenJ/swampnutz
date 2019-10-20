@@ -17,7 +17,7 @@ Run `npx swampnutz my_markdown_file.md`
 ### Method 2 - Install globally
 Install globally with `npm install -g swampnutz`.
 
-Now you can use `swampnutz markdown_file.md`. Follow the prompts to make a (https://surge.sh)[surge] account and have fun!
+Now you can use `swampnutz markdown_file.md`. Follow the prompts to make a [surge](https://surge.sh) account and have fun!
 
 Optionally, you may pass in a title with `--title`
 
